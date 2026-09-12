@@ -1,0 +1,162 @@
+stages:
+  - version
+  - restore
+  - build
+  - test
+  - publish
+
+# Define the Docker image to use for CI/CD
+image: mcr.microsoft.com/dotnet/sdk:7.0
+
+variables:
+  DOTNET_VERSION: "7.0"
+  NODE_VERSION: "18"
+
+# Cache configuration
+cache:
+  paths:
+    - .nuget/
+    - node_modules/
+
+# Calculate version using GitVersion
+calculate_version:
+  stage: version
+  before_script:
+    - apt-get update && apt-get install -y python3 git
+    - dotnet tool install --global GitVersion.Tool || dotnet tool update --global GitVersion.Tool
+  script:
+    - python3 calculate_version.py
+  artifacts:
+    reports:
+      dotenv: version.env
+    paths:
+      - version.env
+    expire_in: 1 week
+  only:
+    - main
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+
+# Restore dependencies
+restore_dependencies:
+  stage: restore
+  dependencies:
+    - calculate_version
+  before_script:
+    - apt-get update && apt-get install -y python3 nodejs npm
+  script:
+    - python3 restore_projects.py
+  artifacts:
+    paths:
+      - "**/.nuget/"
+      - "**/node_modules/"
+    expire_in: 1 day
+  cache:
+    paths:
+      - .nuget/
+      - node_modules/
+
+# Build projects
+build_projects:
+  stage: build
+  dependencies:
+    - restore_dependencies
+    - calculate_version
+  before_script:
+    - apt-get update && apt-get install -y python3
+  script:
+    - python3 build_projects.py --configuration Release --version ${VERSION}
+  artifacts:
+    paths:
+      - "**/bin/"
+      - "**/dist/"
+    expire_in: 1 week
+  only:
+    - main
+    - develop
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - merge_requests
+
+# Run tests
+run_tests:
+  stage: test
+  dependencies:
+    - build_projects
+  before_script:
+    - apt-get update && apt-get install -y python3
+    - dotnet tool install --global coverlet.console || dotnet tool update --global coverlet.console
+  script:
+    - python3 run_tests.py --configuration Release --coverage
+  artifacts:
+    reports:
+      junit:
+        - "**/TestResults/**/*.xml"
+    paths:
+      - "**/TestResults/"
+      - "**/coverage/"
+    expire_in: 1 month
+  coverage: '/Total coverage: \d+\.\d+%/'
+  allow_failure: false
+  only:
+    - main
+    - develop
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - merge_requests
+
+# Publish .NET projects
+publish_artifacts:
+  stage: publish
+  dependencies:
+    - build_projects
+    - calculate_version
+  before_script:
+    - apt-get update && apt-get install -y python3
+  script:
+    - python3 publish_dotnet.py 
+        --output ./publish 
+        --configuration Release 
+        --version ${VERSION} 
+        --summary 
+        --runtime linux-x64
+  artifacts:
+    paths:
+      - publish/
+      - publish/PUBLISH_SUMMARY.txt
+    expire_in: 30 days
+  environment:
+    name: production
+    url: https://your-domain.com
+  only:
+    - main
+    - /^release\/.*$/
+  when: manual
+
+# Optional: Deploy to staging
+deploy_staging:
+  stage: publish
+  dependencies:
+    - publish_artifacts
+  script:
+    - echo "Deploying to staging environment..."
+    - echo "Publishing artifacts from ./publish/"
+  environment:
+    name: staging
+    url: https://staging.your-domain.com
+  only:
+    - develop
+  when: manual
+
+# Optional: Security scanning (requires additional tools)
+security_scan:
+  stage: test
+  dependencies:
+    - restore_dependencies
+  script:
+    - echo "Running security scans..."
+    - dotnet list package --vulnerable || true
+    - npm audit --audit-level=moderate || true
+  allow_failure: true
+  only:
+    - merge_requests
