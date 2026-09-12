@@ -1,0 +1,17 @@
+<Project>
+
+    <PropertyGroup>
+    	<ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+   		<Using Include="Bullseye" />
+   		<Using Include="SimpleExec" />
+      	<Using Include="Targets" />
+
+  		<Using Include="Bullseye.Targets" Static="True" />
+  		<Using Include="SimpleExec.Command" Static="True" />
+    	<Using Include="Targets.Helpers" Static="True" />
+    </ItemGroup>
+
+</Project>

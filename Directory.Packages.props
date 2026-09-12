@@ -1,0 +1,12 @@
+<Project>
+
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageVersion Include="Bullseye" Version="6.0.0" />
+        <PackageVersion Include="SimpleExec" Version="13.1.0" />
+    </ItemGroup>
+
+</Project>
