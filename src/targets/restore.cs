@@ -4,12 +4,11 @@
 
 namespace Targets;
 
-public class DotnetRestoreTarget() : Target("dotnet restore")
+public class DotnetRestoreTarget(FileInfo solution) : Target("dotnet restore")
 {
     public override async Task Run()
     {
-        await Task.Delay(TimeSpan.FromSeconds(3));
-        //await RunAsync("dotnet", "restore");
+        await RunAsync("dotnet", $"restore {solution.Name}", workingDirectory: solution.Directory.FullName);
     }
 }
 

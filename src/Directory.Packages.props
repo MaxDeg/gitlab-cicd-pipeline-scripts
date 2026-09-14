@@ -7,6 +7,7 @@
     <ItemGroup>
         <PackageVersion Include="Bullseye" Version="6.0.0" />
         <PackageVersion Include="SimpleExec" Version="13.1.0" />
+        <PackageVersion Include="System.CommandLine" Version="2.0.12" />
     </ItemGroup>
 
 </Project>

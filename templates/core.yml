@@ -1,0 +1,4 @@
+---
+
+.clone_build_pipeline:
+  - git clone --depth 1 https://

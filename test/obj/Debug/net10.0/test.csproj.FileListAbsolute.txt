@@ -1,0 +1,14 @@
+/home/max/projects/build-pipeline/test/bin/Debug/net10.0/test
+/home/max/projects/build-pipeline/test/bin/Debug/net10.0/test.deps.json
+/home/max/projects/build-pipeline/test/bin/Debug/net10.0/test.runtimeconfig.json
+/home/max/projects/build-pipeline/test/bin/Debug/net10.0/test.dll
+/home/max/projects/build-pipeline/test/bin/Debug/net10.0/test.pdb
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.GeneratedMSBuildEditorConfig.editorconfig
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.AssemblyInfoInputs.cache
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.AssemblyInfo.cs
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.csproj.CoreCompileInputs.cache
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.dll
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/refint/test.dll
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.pdb
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/test.genruntimeconfig.cache
+/home/max/projects/build-pipeline/test/obj/Debug/net10.0/ref/test.dll
