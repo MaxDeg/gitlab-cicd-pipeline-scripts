@@ -6,11 +6,19 @@ using System.Text.Json;
 
 namespace Targets;
 
-public class VersionTarget() : Target("calculate version")
+public interface IVersionOptions
 {
-    private const string GitVersionConfigFileName = "GitVersion.yaml";
+    DirectoryInfo WorkingDirectory { get; }
+}
 
-    public override async Task Run()
+public class VersionTarget
+    : RegistrableTarget<VersionTarget, IVersionOptions>, ITarget<IVersionOptions>
+{
+    private const string GitVersionConfigFileName = "GitVersion.yml";
+
+    public static string Name => "calculate version";
+
+    public static async Task RunTarget(IVersionOptions options)
     {
         var (stdOut, stdErr) = await ReadAsync("dotnet-gitversion", "/output json");
         if (!string.IsNullOrEmpty(stdErr))
@@ -23,10 +31,10 @@ public class VersionTarget() : Target("calculate version")
         Console.WriteLine(stdOut);
     }
 
-    private Task InstallGitVersion() =>
+    private static Task InstallGitVersion() =>
         RunAsync("dotnet", "tool install --global GitVersion.Tool");
 
-    private async Task EnsureGitVersionConfiguration()
+    private static async Task EnsureGitVersionConfiguration()
     {
         if (!File.Exists(GitVersionConfigFileName))
         {

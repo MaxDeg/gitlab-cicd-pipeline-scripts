@@ -5,24 +5,33 @@
 
 namespace Targets;
 
-public class BuildTarget(FileInfo solution) : Target("dotnet build")
+public interface IDotNetOptions
 {
-    public override async Task Run()
+    DirectoryInfo WorkingDirectory { get; }
+
+    FileInfo Solution { get; }
+}
+
+public class DotNetBuildTarget
+    : RegistrableTarget<DotNetBuildTarget, IDotNetOptions>, ITarget<IDotNetOptions>
+{
+    public static string Name => "dotnet build";
+
+    public static async Task RunTarget(IDotNetOptions options)
     {
-        //Console.WriteLine($"Calculated version : {VersionTarget.CalculatedVersion}");
-        await RunAsync("dotnet", $"build {solution.Name}", workingDirectory: solution.Directory.FullName);
+        await RunAsync("dotnet", $"build {options.Solution.Name}", workingDirectory: options.WorkingDirectory.FullName);
     }
 }
 
-public class NpmBuildTarget() : Target("npm build")
-{
-    // public override string[] GetDependencies(string[] dependsOn) =>
-    // [
-    //     RegisterTarget<NpmRestoreTarget>(dependsOn),
-    // ];
+// public class NpmBuildTarget() : Target("npm build")
+// {
+//     // public override string[] GetDependencies(string[] dependsOn) =>
+//     // [
+//     //     RegisterTarget<NpmRestoreTarget>(dependsOn),
+//     // ];
 
-    public override Task Run()
-    {
-        return Task.Delay(TimeSpan.FromSeconds(5));
-    }
-}
+//     public override Task Run()
+//     {
+//         return Task.Delay(TimeSpan.FromSeconds(5));
+//     }
+// }

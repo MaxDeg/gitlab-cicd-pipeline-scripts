@@ -7,45 +7,27 @@
 #:include targets/build.cs
 #:include commands/PipelineCommand.cs
 
-using Bullseye;
 using Commands;
-using System.CommandLine;
-using System.CommandLine.Parsing;
+using static Commands.PipelineCommand;
 
-/*
 var solutionOpts = Option<FileInfo>("--solution");
 
 var parseResult = ParseArguments(args);
-
-var solution = parseResult.GetRequiredValue(solutionOpts);
-
-var restoreTarget = Target(a => new DotnetRestoreTarget(solution));
-var versionTarget = Target(_ => new VersionTarget());
-
-DefaultTarget(a => new BuildTarget(solution), [restoreTarget, versionTarget]);
-
-return Run(args);
-*/
-
-
-
-return await new BuildServiceCommand().Invoke(args);
-
-public class BuildServiceCommand()
-    : PipelineCommand(
-        "build the current repository",
-        [SolutionOpts])
+var options = new BuildServiceOptions
 {
-    private static readonly Option<FileInfo> SolutionOpts = new("--solution");
+    WorkingDirectory = parseResult.GetRequiredValue(solutionOpts).Directory!,
+    Solution = parseResult.GetRequiredValue(solutionOpts),
+};
 
-    protected override string[] RegisterTargets(ParseResult commandLine)
-    {
-        var solution = commandLine.GetRequiredValue(SolutionOpts);
+var versionTarget = VersionTarget.Configure(options);
+var restoreTarget = DotNetRestoreTarget.Configure(options);
+var buildTarget = DotNetBuildTarget.Configure(options, dependsOn: [versionTarget, restoreTarget]);
 
-        var restoreTarget = RegisterTarget(new DotnetRestoreTarget(solution));
-        var versionTarget = RegisterTarget(new VersionTarget());
-        var buildTarget = RegisterTarget(new BuildTarget(solution), [restoreTarget, versionTarget]);
+await RunTargets([buildTarget]);
 
-        return [buildTarget];
-    }
+public sealed class BuildServiceOptions : IRestoreOptions, IVersionOptions, IDotNetOptions
+{
+    public required DirectoryInfo WorkingDirectory { get; init; }
+
+    public required FileInfo Solution { get; init; }
 }

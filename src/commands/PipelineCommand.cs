@@ -3,46 +3,32 @@
 #:package Bullseye
 #:package System.CommandLine
 
+#:include ../targets/helpers.cs
+
 using System.CommandLine;
 
 namespace Commands;
 
-public abstract class PipelineCommand : System.CommandLine.RootCommand
+public class PipelineCommand : RootCommand
 {
-    public PipelineCommand(string description, Option[] options)
-        : base(description)
+    private static readonly PipelineCommand Instance = [];
+
+    public static Option<T> Option<T>(string name)
     {
-        SetAction(Run);
-        foreach (var opts in options)
-        {
-            Options.Add(opts);
-        }
+        var opts = new Option<T>(name);
+        Instance.Options.Add(opts);
+
+        return opts;
     }
 
-    protected abstract string[] RegisterTargets(ParseResult commandLine);
-
-    private async Task Run(ParseResult commandLine)
+    public static ParseResult ParseArguments(string[] args)
     {
-        var targets = RegisterTargets(commandLine);
-        Target("default", dependsOn: targets);
-
-        await RunTargetsAndExitAsync(["--parallel"], ex => ex is ExitCodeException);
+        return Instance.Parse(args);
     }
 
-    public async Task<int> Invoke(IReadOnlyList<string> args)
+    public static Task RunTargets(string[] targets)
     {
-        return await Parse(args).InvokeAsync();
-    }
-}
-
-public static class RootCommandExtensions
-{
-    extension(RootCommand rootCommand)
-    {
-        public RootCommand AddCommand<TCommand>() where TCommand : PipelineCommand, new()
-        {
-            rootCommand.Subcommands.Add(new TCommand());
-            return rootCommand;
-        }
+        Bullseye.Targets.Target("default", dependsOn: targets);
+        return Bullseye.Targets.RunTargetsAndExitAsync(["--parallel"], ex => ex is ExitCodeException);
     }
 }

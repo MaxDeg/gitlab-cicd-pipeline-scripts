@@ -4,40 +4,51 @@
 
 namespace Targets;
 
-public abstract class Target(string name)
+public interface ITarget<TOptions>
 {
-    public string Name { get; } = name;
+    static abstract string Name { get; }
 
-    public virtual string[] GetDependencies(string[] dependsOn) => [];
+    static virtual string? Description => null;
 
-    public virtual Task Run() => Task.CompletedTask;
+    static abstract Task RunTarget(TOptions options);
 }
 
-public static class Helpers
+public abstract class RegistrableTarget<TTarget, TOptions>
+    where TTarget : ITarget<TOptions>
 {
-    public static string RegisterTarget<TTarget>(string[]? dependsOn = null)
-        where TTarget : Target, new()
+    public static string Configure(TOptions options, string[]? dependsOn = null)
     {
-        var target = new TTarget();
-        var dependencies = target.GetDependencies(dependsOn ?? []);
-
         Bullseye.Targets.Target(
-            target.Name,
-            [.. dependencies, .. dependsOn ?? []],
-            target.Run);
+            TTarget.Name,
+            TTarget.Description ?? "",
+            dependsOn ?? [],
+            () => TTarget.RunTarget(options));
 
-        return target.Name;
+        return TTarget.Name;
     }
+}
 
-    public static string RegisterTarget(Target target, string[]? dependsOn = null)
+public interface ITarget<TOptions, TInput>
+{
+    static abstract string Name { get; }
+
+    static virtual string? Description => null;
+
+    static abstract Task RunTarget(TOptions options, TInput input);
+}
+
+public abstract class RegistrableTarget<TTarget, TOptions, TInput>
+    where TTarget : ITarget<TOptions, TInput>
+{
+    public static string Configure(TOptions options, string[]? dependsOn = null)
     {
-        var dependencies = target.GetDependencies(dependsOn ?? []);
-
         Bullseye.Targets.Target(
-            target.Name,
-            [.. dependencies, .. dependsOn ?? []],
-            target.Run);
+            TTarget.Name,
+            TTarget.Description ?? "",
+            dependsOn ?? [],
+            [],
+            input => TTarget.RunTarget(options, input));
 
-        return target.Name;
+        return TTarget.Name;
     }
 }

@@ -4,18 +4,31 @@
 
 namespace Targets;
 
-public class DotnetRestoreTarget(FileInfo solution) : Target("dotnet restore")
+public interface IRestoreOptions
 {
-    public override async Task Run()
+    DirectoryInfo WorkingDirectory { get; }
+
+    FileInfo Solution { get; }
+}
+
+public class DotNetRestoreTarget
+    : RegistrableTarget<DotNetRestoreTarget, IRestoreOptions>, ITarget<IRestoreOptions>
+{
+    public static string Name => "dotnet restore";
+
+    public static async Task RunTarget(IRestoreOptions options)
     {
-        await RunAsync("dotnet", $"restore {solution.Name}", workingDirectory: solution.Directory.FullName);
+        await RunAsync(
+            "dotnet",
+            $"restore {options.Solution.Name}",
+            workingDirectory: options.WorkingDirectory.FullName);
     }
 }
 
-public class NpmRestoreTarget() : Target("npm restore")
-{
-    public override Task Run()
-    {
-        return Task.Delay(TimeSpan.FromSeconds(2));
-    }
-}
+// public class NpmRestoreTarget() : Target("npm restore")
+// {
+//     public override Task Run()
+//     {
+//         return Task.Delay(TimeSpan.FromSeconds(2));
+//     }
+// }

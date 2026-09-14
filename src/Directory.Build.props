@@ -2,6 +2,7 @@
 
     <PropertyGroup>
     	<ImplicitUsings>enable</ImplicitUsings>
+     	<nullable>enable</nullable>
     </PropertyGroup>
 
     <ItemGroup>
@@ -9,9 +10,8 @@
    		<Using Include="SimpleExec" />
       	<Using Include="Targets" />
 
-  		<Using Include="Bullseye.Targets" Static="True" />
+  		<!-- <Using Include="Bullseye.Targets" Static="True" /> -->
   		<Using Include="SimpleExec.Command" Static="True" />
-    	<Using Include="Targets.Helpers" Static="True" />
     </ItemGroup>
 
 </Project>
