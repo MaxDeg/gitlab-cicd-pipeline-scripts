@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "jk9ZrHtnhqA=",
+  "success": true,
+  "projectFilePath": "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj",
+  "expectedPackageFiles": [
+    "/home/max/.nuget/packages/bullseye/6.0.0/bullseye.6.0.0.nupkg.sha512",
+    "/home/max/.nuget/packages/simpleexec/13.1.0/simpleexec.13.1.0.nupkg.sha512",
+    "/home/max/.nuget/packages/system.commandline/2.0.12/system.commandline.2.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

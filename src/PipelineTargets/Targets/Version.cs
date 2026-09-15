@@ -1,18 +1,9 @@
-#!/usr/bin/dotnet run
+namespace PipelineTargets.Targets;
 
-#:include helpers.cs
+public interface IVersionOptions : IDotNetOptions;
 
-using System.Text.Json;
-
-namespace Targets;
-
-public interface IVersionOptions
-{
-    DirectoryInfo WorkingDirectory { get; }
-}
-
-public class VersionTarget
-    : RegistrableTarget<VersionTarget, IVersionOptions>, ITarget<IVersionOptions>
+public class VersionTarget : ConfigurableTarget<VersionTarget, IVersionOptions>,
+    ITarget<IVersionOptions>
 {
     private const string GitVersionConfigFileName = "GitVersion.yml";
 
@@ -20,19 +11,22 @@ public class VersionTarget
 
     public static async Task RunTarget(IVersionOptions options)
     {
-        var (stdOut, stdErr) = await ReadAsync("dotnet-gitversion", "/output json");
+        await EnsureGitVersionConfiguration();
+
+        var (stdOut, stdErr) = await Dnx("gitversion.tool", [
+            "/output", "json",
+            "/updateprojectfiles",
+            "/verbosity", "normal",
+        ],
+        options.WorkingDirectory);
+
         if (!string.IsNullOrEmpty(stdErr))
         {
             throw new Exception(stdErr);
         }
 
-        var jsonDoc = JsonDocument.Parse(stdOut);
-        // jsonDoc.RootElement.GetProperty("SemVer").GetString();
         Console.WriteLine(stdOut);
     }
-
-    private static Task InstallGitVersion() =>
-        RunAsync("dotnet", "tool install --global GitVersion.Tool");
 
     private static async Task EnsureGitVersionConfiguration()
     {

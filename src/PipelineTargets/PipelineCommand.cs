@@ -1,13 +1,6 @@
-#!/usr/bin/dotnet run
-
-#:package Bullseye
-#:package System.CommandLine
-
-#:include ../targets/helpers.cs
-
 using System.CommandLine;
 
-namespace Commands;
+namespace PipelineTargets;
 
 public class PipelineCommand : RootCommand
 {

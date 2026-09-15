@@ -1,24 +1,194 @@
 {
   "version": 4,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "Bullseye/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Bullseye.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Bullseye.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SimpleExec/13.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/SimpleExec.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/SimpleExec.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.CommandLine/2.0.12": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.CommandLine.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.CommandLine.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "resource": {
+          "lib/net8.0/cs/System.CommandLine.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/net8.0/de/System.CommandLine.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net8.0/es/System.CommandLine.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net8.0/fr/System.CommandLine.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net8.0/it/System.CommandLine.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net8.0/ja/System.CommandLine.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net8.0/ko/System.CommandLine.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net8.0/pl/System.CommandLine.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/net8.0/pt-BR/System.CommandLine.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net8.0/ru/System.CommandLine.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net8.0/tr/System.CommandLine.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/net8.0/zh-Hans/System.CommandLine.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net8.0/zh-Hant/System.CommandLine.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Bullseye/6.0.0": {
+      "sha512": "vgwwXfzs7jJrskWH7saHRMgPzziq/e86QZNWY1MnMxd7e+De7E7EX4K3C7yrvaK9y02SJoLxNxcLG/q5qUAghw==",
+      "type": "package",
+      "path": "bullseye/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "bullseye.6.0.0.nupkg.sha512",
+        "bullseye.nuspec",
+        "bullseye.png",
+        "lib/net8.0/Bullseye.dll",
+        "lib/net8.0/Bullseye.xml",
+        "lib/net9.0/Bullseye.dll",
+        "lib/net9.0/Bullseye.xml"
+      ]
+    },
+    "SimpleExec/13.1.0": {
+      "sha512": "Q/xUWjrB98Aq+guCJtGFAHmnH00J3Ux7Q/gbnVkuh1U4FHZ2/3PgBHTcZuuhs2cSv5pNgZeHEmGwLgSjjbFlrw==",
+      "type": "package",
+      "path": "simpleexec/13.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "_manifest/spdx_2.2/manifest.spdx.json",
+        "_manifest/spdx_2.2/manifest.spdx.json.sha256",
+        "lib/net10.0/SimpleExec.dll",
+        "lib/net10.0/SimpleExec.xml",
+        "lib/net8.0/SimpleExec.dll",
+        "lib/net8.0/SimpleExec.xml",
+        "lib/net9.0/SimpleExec.dll",
+        "lib/net9.0/SimpleExec.xml",
+        "simple-exec.png",
+        "simpleexec.13.1.0.nupkg.sha512",
+        "simpleexec.nuspec"
+      ]
+    },
+    "System.CommandLine/2.0.12": {
+      "sha512": "FpW672e6qqrTd1EfKqsvUtFZaJWlTlszUR1o8tdakXhkzKbnEZVndtpfd4K3fUPCFcIs9UmcswMyYGJP1zp/rg==",
+      "type": "package",
+      "path": "system.commandline/2.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "README.md",
+        "lib/net8.0/System.CommandLine.dll",
+        "lib/net8.0/System.CommandLine.pdb",
+        "lib/net8.0/System.CommandLine.xml",
+        "lib/net8.0/cs/System.CommandLine.resources.dll",
+        "lib/net8.0/de/System.CommandLine.resources.dll",
+        "lib/net8.0/es/System.CommandLine.resources.dll",
+        "lib/net8.0/fr/System.CommandLine.resources.dll",
+        "lib/net8.0/it/System.CommandLine.resources.dll",
+        "lib/net8.0/ja/System.CommandLine.resources.dll",
+        "lib/net8.0/ko/System.CommandLine.resources.dll",
+        "lib/net8.0/pl/System.CommandLine.resources.dll",
+        "lib/net8.0/pt-BR/System.CommandLine.resources.dll",
+        "lib/net8.0/ru/System.CommandLine.resources.dll",
+        "lib/net8.0/tr/System.CommandLine.resources.dll",
+        "lib/net8.0/zh-Hans/System.CommandLine.resources.dll",
+        "lib/net8.0/zh-Hant/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/System.CommandLine.dll",
+        "lib/netstandard2.0/System.CommandLine.pdb",
+        "lib/netstandard2.0/System.CommandLine.xml",
+        "lib/netstandard2.0/cs/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/de/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/es/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/fr/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/it/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/ja/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/ko/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/pl/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/pt-BR/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/ru/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/tr/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/zh-Hans/System.CommandLine.resources.dll",
+        "lib/netstandard2.0/zh-Hant/System.CommandLine.resources.dll",
+        "system.commandline.2.0.12.nupkg.sha512",
+        "system.commandline.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "Bullseye >= 6.0.0",
+      "SimpleExec >= 13.1.0",
+      "System.CommandLine >= 2.0.12"
+    ]
   },
   "packageFolders": {
     "/home/max/.nuget/packages/": {}
   },
   "project": {
-    "version": "0.0.1-bullseye.1",
+    "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/max/projects/build-pipeline/test/test.csproj",
-      "projectName": "test",
-      "projectPath": "/home/max/projects/build-pipeline/test/test.csproj",
+      "projectUniqueName": "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj",
+      "projectName": "PipelineTargets",
+      "projectPath": "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj",
       "packagesPath": "/home/max/.nuget/packages/",
-      "outputPath": "/home/max/projects/build-pipeline/test/obj/",
+      "outputPath": "/home/max/projects/build-pipeline/src/PipelineTargets/obj/",
       "projectStyle": "PackageReference",
+      "centralPackageVersionsManagementEnabled": true,
       "configFilePaths": [
         "/home/max/.nuget/NuGet/NuGet.Config"
       ],
@@ -51,6 +221,28 @@
       "net10.0": {
         "framework": "net10.0",
         "targetAlias": "net10.0",
+        "dependencies": {
+          "Bullseye": {
+            "target": "Package",
+            "version": "[6.0.0, )",
+            "versionCentrallyManaged": true
+          },
+          "SimpleExec": {
+            "target": "Package",
+            "version": "[13.1.0, )",
+            "versionCentrallyManaged": true
+          },
+          "System.CommandLine": {
+            "target": "Package",
+            "version": "[2.0.12, )",
+            "versionCentrallyManaged": true
+          }
+        },
+        "centralPackageVersions": {
+          "Bullseye": "6.0.0",
+          "SimpleExec": "13.1.0",
+          "System.CommandLine": "2.0.12"
+        },
         "imports": [
           "net461",
           "net462",

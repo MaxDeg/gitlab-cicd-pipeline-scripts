@@ -1,14 +1,18 @@
 <Project>
 
-    <PropertyGroup>
-    	<ImplicitUsings>enable</ImplicitUsings>
-     	<nullable>enable</nullable>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
     <ItemGroup>
    		<Using Include="Bullseye" />
    		<Using Include="SimpleExec" />
-      	<Using Include="Targets" />
+    	<Using Include="PipelineTargets" />
+      	<Using Include="PipelineTargets.Targets" />
+      	<Using Include="PipelineTargets.PipelineCommand" Static="True" />
+        <Using Include="PipelineTargets.DotNetTool" Static="True" />
 
   		<!-- <Using Include="Bullseye.Targets" Static="True" /> -->
   		<Using Include="SimpleExec.Command" Static="True" />

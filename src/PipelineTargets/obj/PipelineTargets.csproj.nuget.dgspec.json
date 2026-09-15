@@ -1,18 +1,19 @@
 {
   "format": 1,
   "restore": {
-    "/home/max/projects/build-pipeline/test/test.csproj": {}
+    "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj": {}
   },
   "projects": {
-    "/home/max/projects/build-pipeline/test/test.csproj": {
-      "version": "0.0.1-bullseye.1",
+    "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/max/projects/build-pipeline/test/test.csproj",
-        "projectName": "test",
-        "projectPath": "/home/max/projects/build-pipeline/test/test.csproj",
+        "projectUniqueName": "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj",
+        "projectName": "PipelineTargets",
+        "projectPath": "/home/max/projects/build-pipeline/src/PipelineTargets/PipelineTargets.csproj",
         "packagesPath": "/home/max/.nuget/packages/",
-        "outputPath": "/home/max/projects/build-pipeline/test/obj/",
+        "outputPath": "/home/max/projects/build-pipeline/src/PipelineTargets/obj/",
         "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
         "configFilePaths": [
           "/home/max/.nuget/NuGet/NuGet.Config"
         ],
@@ -45,6 +46,28 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Bullseye": {
+              "target": "Package",
+              "version": "[6.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "SimpleExec": {
+              "target": "Package",
+              "version": "[13.1.0, )",
+              "versionCentrallyManaged": true
+            },
+            "System.CommandLine": {
+              "target": "Package",
+              "version": "[2.0.12, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Bullseye": "6.0.0",
+            "SimpleExec": "13.1.0",
+            "System.CommandLine": "2.0.12"
+          },
           "imports": [
             "net461",
             "net462",

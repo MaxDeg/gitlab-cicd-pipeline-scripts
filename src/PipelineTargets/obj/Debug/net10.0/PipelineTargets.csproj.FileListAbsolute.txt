@@ -1,0 +1,13 @@
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.csproj.AssemblyReference.cache
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.GeneratedMSBuildEditorConfig.editorconfig
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.AssemblyInfoInputs.cache
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.AssemblyInfo.cs
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.csproj.CoreCompileInputs.cache
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.sourcelink.json
+/home/max/projects/build-pipeline/src/PipelineTargets/bin/Debug/net10.0/PipelineTargets.deps.json
+/home/max/projects/build-pipeline/src/PipelineTargets/bin/Debug/net10.0/PipelineTargets.dll
+/home/max/projects/build-pipeline/src/PipelineTargets/bin/Debug/net10.0/PipelineTargets.pdb
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.dll
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/refint/PipelineTargets.dll
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/PipelineTargets.pdb
+/home/max/projects/build-pipeline/src/PipelineTargets/obj/Debug/net10.0/ref/PipelineTargets.dll
