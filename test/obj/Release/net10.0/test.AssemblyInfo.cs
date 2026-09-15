@@ -13,8 +13,8 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute(("0.0.1-bullseye.1+3.Branch.bullseye.Sha.6148d87bb9b69b6684a01d2b47835ce12c7d1228.6" +
-    "148d87bb9b69b6684a01d2b47835ce12c7d1228"))]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute(("0.0.1-bullseye.1+4.Branch.bullseye.Sha.f2f975df67f8d11960072c11082e9ed98bce2005.f" +
+    "2f975df67f8d11960072c11082e9ed98bce2005"))]
 [assembly: System.Reflection.AssemblyProductAttribute("test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.0.1.0")]

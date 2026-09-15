@@ -16,15 +16,15 @@ var options = new BuildServiceOptions
     Token = "1234",
 };
 
-var customizeSolutionBuildTarget = CustomizeSolutionBuildTarget.Configure(options);
-var versionTarget = VersionTarget.Configure(options);
-var restoreTarget = DotNetRestoreTarget.Configure(options, dependsOn: [customizeSolutionBuildTarget]);
-var sonarBeginTarget = SonarBeginTarget.Configure(options, dependsOn: [restoreTarget]);
-var buildTarget = DotNetBuildTarget.Configure(options, dependsOn: [versionTarget, restoreTarget, sonarBeginTarget]);
-var testTarget = DotNetTestTarget.Configure(options, dependsOn: [buildTarget]);
-var sonarEndTarget = SonarEndTarget.Configure(options, dependsOn: [sonarBeginTarget, testTarget]);
+var customizeSolutionBuild = CustomizeSolutionBuildTarget.Configure(options);
+var version = VersionTarget.Configure(options);
+var restore = DotNetRestoreTarget.Configure(options, dependsOn: [customizeSolutionBuild]);
+var sonarBegin = SonarBeginTarget.Configure(options, dependsOn: [restore]);
+var build = DotNetBuildTarget.Configure(options, dependsOn: [version, restore, sonarBegin]);
+var test = DotNetTestTarget.Configure(options, dependsOn: [build]);
+var sonarEnd = SonarEndTarget.Configure(options, dependsOn: [sonarBegin, test]);
 
-await RunTargets([sonarEndTarget]);
+await RunTargets([sonarEnd]);
 
 public sealed class BuildServiceOptions : ITargetOptions,
     IDotNetOptions, IDotNetRestoreOptions, IDotNetBuildOptions, IDotNetTestOptions,
